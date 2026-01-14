@@ -11,9 +11,10 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy app
+# Copy application files
 COPY startup_analyzer.py .
 COPY monitoring.py .
+COPY auto_analyzer.py .
 
 # Create directories
 RUN mkdir -p pitch_decks results
