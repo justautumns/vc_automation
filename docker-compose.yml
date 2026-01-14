@@ -22,11 +22,13 @@ services:
       ollama:
         condition: service_healthy
     volumes:
-      - ./pitch_decks:/app/pitch_decks:ro
+      - ./pitch_decks:/app/pitch_decks  # ← :ro kaldırdım (read-only değil artık)
       - ./results:/app/results
     environment:
       - OLLAMA_BASE_URL=http://ollama:11434
       - OLLAMA_MODEL=tinyllama:latest
+    # ↓ EKLE: auto_analyzer'ı başlat
+    command: python auto_analyzer.py
     restart: unless-stopped
 
 volumes:
